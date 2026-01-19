@@ -8,6 +8,8 @@ It contains a fully functioning deck of cards generator, with featureds of shuff
 
 As of the Spring of 2026, I have begun updating this project so as to fully complete it.  
 I have better organized the various python scripts:  
+```
 deck.py containing the basic deck functions,  
 tgfx.py containing the terminal graphics functions, and  
 game.py containing the game rules and player-interaction functions.
+```
