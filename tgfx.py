@@ -17,6 +17,7 @@ nums = ['║ 𝐀  ║','║   1║','║ ⠁⠄ ║','║   2║','║ ⠡⠁ �
 
 cursor = [1, 1]
 
+# DON'T WORRY ABOUT THIS... it works, thats all that matters
 def arrangeDeck():
     x = 0
     gameboard = ""
@@ -32,7 +33,8 @@ def arrangeDeck():
         x += 1
     return gameboard
 
-def flipCard(r, c, d): #row (starting at 1, left-to-right), card to update (starting at 1, top-to-bottom), data of drawn card
+# flipCard(row: starting at 1 && left-to-right, card to update: starting at 1 && top-to-bottom, data of drawn card)
+def flipCard(r, c, d):
     updatePos = 6 * (c - 1) + 1 # starting updatePos
     card = ['║▒▓▒▓║','║▓▒▓▒║','║▒▓▒▓║'] #set d variable to 'reset' to reset card
 
@@ -46,8 +48,8 @@ def flipCard(r, c, d): #row (starting at 1, left-to-right), card to update (star
         if d[1] == "Diamonds":
             card[0] = suit[3]
 
-        card[1] = nums[2 * (d[2] - 1) - 1]
-        card[2] = nums[2 * (d[2] - 1)]
+        card[1] = nums[2 * (d[2] - 1)]
+        card[2] = nums[2 * (d[2] - 1) + 1]
 
     if r == 1:
         global row1
@@ -70,11 +72,41 @@ def flipCard(r, c, d): #row (starting at 1, left-to-right), card to update (star
         row4[updatePos + 1] = card[1]
         row4[updatePos + 2] = card[2]
 
+# moveCursor(row of card to point at, card to point at, row of card previously pointed at, card previously pointed at)
+def moveCursor(r, c, pr, pc): 
+    prevPos = 6 * pc - 1 
+
+    global row1
+    global row2
+    global row3
+    global row4
+
+    if pr == 1:
+        row1[prevPos] = opti[0]
+    if pr == 2: 
+        row2[prevPos] = opti[0]
+    if pr == 3:
+        row3[prevPos] = opti[0]
+    if pr == 4:
+        row4[prevPos] = opti[0]
+
+    updatePos = 6 * c - 1
+
+    if r == 1:
+        row1[updatePos] = opti[1]
+    if r == 2: 
+        row2[updatePos] = opti[1]
+    if r == 3:
+        row3[updatePos] = opti[1]
+    if r == 4:
+        row4[updatePos] = opti[1]
+
+
 
 # def updateCursor(r, c):
 
 ## bug checkerrr
-#'''
+'''
 print(arrangeDeck())
 
 dih = deck.gen()
@@ -86,13 +118,16 @@ print(arrangeDeck())
 
 time.sleep(1)
 flipCard(1, 2, deck.drawCard(dih, 0))
+moveCursor(1, 2, 1, 1)
 print(arrangeDeck())
 
 time.sleep(1)
 flipCard(1, 3, deck.drawCard(dih, 0))
+moveCursor(1, 3, 1, 2)
 print(arrangeDeck())
 
 time.sleep(1)
 flipCard(1, 4, deck.drawCard(dih, 0))
+moveCursor(1, 4, 1, 3)
 print(arrangeDeck())
 #'''
