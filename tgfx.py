@@ -1,133 +1,130 @@
-import time
-import deck
+class tgfx:
+    
+    # Finally got the constructor working--tgfx now functions as an object! 
+    def __init__(self):
+        self.row1 = ['╔════╗','║▒▓▒▓║','║▓▒▓▒║','║▒▓▒▓║','╚════╝','  ◢◣  ','╔════╗','║▒▓▒▓║','║▓▒▓▒║','║▒▓▒▓║','╚════╝','      ','╔════╗','║▒▓▒▓║','║▓▒▓▒║','║▒▓▒▓║','╚════╝','      ','╔════╗','║▒▓▒▓║','║▓▒▓▒║','║▒▓▒▓║','╚════╝','      ']
 
-row1 = ['╔════╗','║▒▓▒▓║','║▓▒▓▒║','║▒▓▒▓║','╚════╝','  ◢◣  ','╔════╗','║▒▓▒▓║','║▓▒▓▒║','║▒▓▒▓║','╚════╝','      ','╔════╗','║▒▓▒▓║','║▓▒▓▒║','║▒▓▒▓║','╚════╝','      ','╔════╗','║▒▓▒▓║','║▓▒▓▒║','║▒▓▒▓║','╚════╝','      ']
+        self.row2 = ['╔════╗','║▒▓▒▓║','║▓▒▓▒║','║▒▓▒▓║','╚════╝','      ','╔════╗','║▒▓▒▓║','║▓▒▓▒║','║▒▓▒▓║','╚════╝','      ','╔════╗','║▒▓▒▓║','║▓▒▓▒║','║▒▓▒▓║','╚════╝','      ']
 
-row2 = ['╔════╗','║▒▓▒▓║','║▓▒▓▒║','║▒▓▒▓║','╚════╝','      ','╔════╗','║▒▓▒▓║','║▓▒▓▒║','║▒▓▒▓║','╚════╝','      ','╔════╗','║▒▓▒▓║','║▓▒▓▒║','║▒▓▒▓║','╚════╝','      ']
+        self.row3 = ['╔════╗','║▒▓▒▓║','║▓▒▓▒║','║▒▓▒▓║','╚════╝','      ','╔════╗','║▒▓▒▓║','║▓▒▓▒║','║▒▓▒▓║','╚════╝','      ']
 
-row3 = ['╔════╗','║▒▓▒▓║','║▓▒▓▒║','║▒▓▒▓║','╚════╝','      ','╔════╗','║▒▓▒▓║','║▓▒▓▒║','║▒▓▒▓║','╚════╝','      ']
+        self.row4 = ['╔════╗','║▒▓▒▓║','║▓▒▓▒║','║▒▓▒▓║','╚════╝','      ']
 
-row4 = ['╔════╗','║▒▓▒▓║','║▓▒▓▒║','║▒▓▒▓║','╚════╝','      ']
+        self.opti = ['      ','  ◢◣  ']
 
-opti = ['      ','  ◢◣  ']
+        self.suit = ['║♣   ║','║♡   ║','║♠   ║','║♢   ║']
 
-suit = ['║♣   ║','║♡   ║','║♠   ║','║♢   ║']
+        self.nums = ['║ 𝐀  ║','║   1║','║ ⠁⠄ ║','║   2║','║ ⠡⠁ ║','║   3║','║ ⠅⠅ ║','║   4║','║ ⠺⠂ ║','║   5║','║ ⠇⠇ ║','║   6║','║ ⠿⠂ ║','║   7║','║ ⠯⠇ ║','║   8║','║ ⠿⠇ ║','║   9║','║ ⣻⡃ ║','║  10║','║ ♘  ║','║  11║','║ ♔  ║','║  12║','║ ♕  ║','║  13║']
 
-nums = ['║ 𝐀  ║','║   1║','║ ⠁⠄ ║','║   2║','║ ⠡⠁ ║','║   3║','║ ⠅⠅ ║','║   4║','║ ⠺⠂ ║','║   5║','║ ⠇⠇ ║','║   6║','║ ⠿⠂ ║','║   7║','║ ⠯⠇ ║','║   8║','║ ⠿⠇ ║','║   9║','║ ⣻⡃ ║','║  10║','║ ♘  ║','║  11║','║ ♔  ║','║  12║','║ ♕  ║','║  13║']
+        self.cursor = [1, 1]
 
-cursor = [1, 1]
+    # DON'T WORRY ABOUT THIS... it works, thats all that matters
+    def arrangeDeck(self):
+        x = 0
+        gameboard = ""
 
-# DON'T WORRY ABOUT THIS... it works, thats all that matters
-def arrangeDeck():
-    x = 0
-    gameboard = ""
-    while x < 24:
-        gameboard += ((str(row1[x]).replace("'","")).replace("[","")).replace("]","")
-        if 3 <= x <= 20:
-            gameboard += ((str(row2[x-3]).replace("'","")).replace("[","")).replace("]","")
-            if 6 <= x <= 17:
-                gameboard += ((str(row3[x-6]).replace("'","")).replace("[","")).replace("]","")
-                if 9 <= x <= 14:
-                    gameboard += ((str(row4[x-9]).replace("'","")).replace("[","")).replace("]","")
-        gameboard += "\n"
-        x += 1
-    return gameboard
+        while x < 24:
+            gameboard += ((str(self.row1[x]).replace("'","")).replace("[","")).replace("]","")
+            if 3 <= x <= 20:
+                gameboard += ((str(self.row2[x-3]).replace("'","")).replace("[","")).replace("]","")
+                if 6 <= x <= 17:
+                    gameboard += ((str(self.row3[x-6]).replace("'","")).replace("[","")).replace("]","")
+                    if 9 <= x <= 14:
+                        gameboard += ((str(self.row4[x-9]).replace("'","")).replace("[","")).replace("]","")
+            gameboard += "\n"
+            x += 1
+        
+        return gameboard
 
-# flipCard(row: starting at 1 && left-to-right, card to update: starting at 1 && top-to-bottom, data of drawn card)
-def flipCard(r, c, d):
-    updatePos = 6 * (c - 1) + 1 # starting updatePos
-    card = ['║▒▓▒▓║','║▓▒▓▒║','║▒▓▒▓║'] #set d variable to 'reset' to reset card
+    # flipCard(row: starting at 1 && left-to-right, card to update: starting at 1 && top-to-bottom, data of drawn card)
+    def flipCard(self, r, c, d):
+        updatePos = 6 * (c - 1) + 1 # starting updatePos
+        card = ['║▒▓▒▓║','║▓▒▓▒║','║▒▓▒▓║'] #set d variable to 'reset' to reset card
 
-    if d != 'reset':
-        if d[1] == "Clubs":
-            card[0] = suit[0]
-        if d[1] == "Hearts":
-            card[0] = suit[1]
-        if d[1] == "Spades":
-            card[0] = suit[2]
-        if d[1] == "Diamonds":
-            card[0] = suit[3]
+        if d != 'reset':
+            if d[1] == "Clubs":
+                card[0] = self.suit[0]
+            if d[1] == "Hearts":
+                card[0] = self.suit[1]
+            if d[1] == "Spades":
+                card[0] = self.suit[2]
+            if d[1] == "Diamonds":
+                card[0] = self.suit[3]
 
-        card[1] = nums[2 * (d[2] - 1)]
-        card[2] = nums[2 * (d[2] - 1) + 1]
+            card[1] = self.nums[2 * (d[2] - 1)]
+            card[2] = self.nums[2 * (d[2] - 1) + 1]
 
-    if r == 1:
-        global row1
-        row1[updatePos] = card[0]
-        row1[updatePos + 1] = card[1]
-        row1[updatePos + 2] = card[2]
-    if r == 2: 
-        global row2
-        row2[updatePos] = card[0]
-        row2[updatePos + 1] = card[1]
-        row2[updatePos + 2] = card[2]
-    if r == 3:
-        global row3
-        row3[updatePos] = card[0]
-        row3[updatePos + 1] = card[1]
-        row3[updatePos + 2] = card[2]
-    if r == 4:
-        global row4
-        row4[updatePos] = card[0]
-        row4[updatePos + 1] = card[1]
-        row4[updatePos + 2] = card[2]
+        if r == 1:
+            self.row1[updatePos] = card[0]
+            self.row1[updatePos + 1] = card[1]
+            self.row1[updatePos + 2] = card[2]
+        if r == 2: 
+            self.row2[updatePos] = card[0]
+            self.row2[updatePos + 1] = card[1]
+            self.row2[updatePos + 2] = card[2]
+        if r == 3:
+            self.row3[updatePos] = card[0]
+            self.row3[updatePos + 1] = card[1]
+            self.row3[updatePos + 2] = card[2]
+        if r == 4:
+            self.row4[updatePos] = card[0]
+            self.row4[updatePos + 1] = card[1]
+            self.row4[updatePos + 2] = card[2]
 
-# moveCursor(row of card to point at, card to point at, row of card previously pointed at, card previously pointed at)
-def moveCursor(r, c, pr, pc): 
-    prevPos = 6 * pc - 1 
+    # moveCursor(row of card to point at, card to point at, row of card previously pointed at, card previously pointed at)
+    def moveCursor(self, r, c, pr, pc): 
+        prevPos = 6 * pc - 1 
 
-    global row1
-    global row2
-    global row3
-    global row4
+        if pr == 1:
+            self.row1[prevPos] = self.opti[0]
+        if pr == 2: 
+            self.row2[prevPos] = self.opti[0]
+        if pr == 3:
+            self.row3[prevPos] = self.opti[0]
+        if pr == 4:
+            self.row4[prevPos] = self.opti[0]
 
-    if pr == 1:
-        row1[prevPos] = opti[0]
-    if pr == 2: 
-        row2[prevPos] = opti[0]
-    if pr == 3:
-        row3[prevPos] = opti[0]
-    if pr == 4:
-        row4[prevPos] = opti[0]
+        updatePos = 6 * c - 1
 
-    updatePos = 6 * c - 1
+        if r == 1:
+            self.row1[updatePos] = self.opti[1]
+        if r == 2: 
+            self.row2[updatePos] = self.opti[1]
+        if r == 3:
+            self.row3[updatePos] = self.opti[1]
+        if r == 4:
+            self.row4[updatePos] = self.opti[1]
 
-    if r == 1:
-        row1[updatePos] = opti[1]
-    if r == 2: 
-        row2[updatePos] = opti[1]
-    if r == 3:
-        row3[updatePos] = opti[1]
-    if r == 4:
-        row4[updatePos] = opti[1]
-
-
-
-# def updateCursor(r, c):
 
 ## bug checkerrr
 '''
-print(arrangeDeck())
+import time
+import deck
+
+graphics = tgfx()
+print(graphics.row1)
+
+print(graphics.arrangeDeck())
 
 dih = deck.gen()
 deck.shuffle(dih)
 
 time.sleep(1)
-flipCard(1, 1, deck.drawCard(dih, 0))
-print(arrangeDeck())
+graphics.flipCard(1, 1, deck.drawCard(dih, 0))
+print(graphics.arrangeDeck())
 
 time.sleep(1)
-flipCard(1, 2, deck.drawCard(dih, 0))
-moveCursor(1, 2, 1, 1)
-print(arrangeDeck())
+graphics.flipCard(1, 2, deck.drawCard(dih, 0))
+graphics.moveCursor(1, 2, 1, 1)
+print(graphics.arrangeDeck())
 
 time.sleep(1)
-flipCard(1, 3, deck.drawCard(dih, 0))
-moveCursor(1, 3, 1, 2)
-print(arrangeDeck())
+graphics.flipCard(1, 3, deck.drawCard(dih, 0))
+graphics.moveCursor(1, 3, 1, 2)
+print(graphics.arrangeDeck())
 
 time.sleep(1)
-flipCard(1, 4, deck.drawCard(dih, 0))
-moveCursor(1, 4, 1, 3)
-print(arrangeDeck())
+graphics.flipCard(1, 4, deck.drawCard(dih, 0))
+graphics.moveCursor(1, 4, 1, 3)
+print(graphics.arrangeDeck())
 #'''
